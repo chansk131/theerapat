@@ -26,7 +26,8 @@ export default function RootLayout({
           className="sticky h-18 top-0 border-b border-gray-200 py-2 px-5 flex
          flex-row justify-end bg-gray-100 bg-opacity-80 backdrop-blur-md font-medium z-10"
         >
-          <NavLink href="/">About Me</NavLink>
+          <NavLink href="/">Home</NavLink>
+          <NavLink href="/about">About Me</NavLink>
         </nav>
         {children}
       </body>
