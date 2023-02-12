@@ -1,3 +1,5 @@
+import MainAnimation from "../../components/MainAnimation"
+
 type TimelineItemProps = {
   time: string
   position: string
@@ -22,7 +24,7 @@ const TimelineItem = ({ time, position, highlights }: TimelineItemProps) => {
 
 export default function About() {
   return (
-    <main className="p-5 max-w-6xl mx-auto">
+    <MainAnimation>
       <section>
         <h1 className="text-5xl font-bold py-10">Work Experiences</h1>
         <ol className="relative border-l border-gray-200">
@@ -70,6 +72,6 @@ export default function About() {
           </li>
         </ul>
       </section>
-    </main>
+    </MainAnimation>
   )
 }

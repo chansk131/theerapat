@@ -2,6 +2,7 @@ import "./globals.css"
 import NavLink from "./NavLink"
 
 import { Inter } from "@next/font/google"
+import MainAnimation from "../components/MainAnimation"
 
 const inter = Inter({
   subsets: ["latin"],

@@ -1,10 +1,10 @@
 import { allBlogs } from "contentlayer/generated"
-import Image from "next/image"
-import Link from "next/link"
+import MainAnimation from "../../components/MainAnimation"
+import BlogCard from "./BlogCard"
 
 export default function BlogPage() {
   return (
-    <main className="p-5 max-w-6xl mx-auto">
+    <MainAnimation>
       <section>
         <h1 className="text-5xl font-bold py-10">Blog</h1>
         <p className="mb-6">
@@ -20,29 +20,10 @@ export default function BlogPage() {
               return 1
             })
             .map((blog) => (
-              <Link
-                key={blog.slug}
-                className="group max-w-[300px] w-full mx-auto lg:mx-0 lg:col-span-2 flex flex-col rounded-lg gap-y-2 pb-4 shadow-xl"
-                href={`/blog/${blog.slug}`}
-              >
-                <Image
-                  className="rounded-t-md"
-                  src={blog.image ?? ""}
-                  alt="cover"
-                  width={300}
-                  height={200}
-                />
-                <p className="text-gray-500 px-4">
-                  {new Intl.DateTimeFormat("en-GB").format(new Date(blog.date))}{" "}
-                  - {blog.readingTime.text}
-                </p>
-                <h2 className="font-bold text-2xl px-4 hover:underline">
-                  {blog.title}
-                </h2>
-              </Link>
+              <BlogCard key={blog.slug} blog={blog} />
             ))}
         </div>
       </section>
-    </main>
+    </MainAnimation>
   )
 }

@@ -1,9 +1,10 @@
 import { EnvelopeIcon } from "@heroicons/react/24/outline"
+import MainAnimation from "../components/MainAnimation"
 import GithubIcon from "../resources/icons/GithubIcon"
 
 export default function Home() {
   return (
-    <main className="p-5 max-w-6xl mx-auto">
+    <MainAnimation>
       <section className="mb-10">
         <h1 className="pt-20 pb-10 lg:pt-32 lg:pb-16 text-5xl font-extrabold max-w-[30rem]">
           Hi! My name is <strong className="text-teal-500">Chan</strong> and I
@@ -43,6 +44,6 @@ export default function Home() {
           </li>
         </ul>
       </section>
-    </main>
+    </MainAnimation>
   )
 }

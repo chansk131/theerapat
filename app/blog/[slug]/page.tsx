@@ -1,6 +1,7 @@
 import { allBlogs } from "contentlayer/generated"
 import Image from "next/image"
 import { notFound } from "next/navigation"
+import MainAnimation from "../../../components/MainAnimation"
 import { Mdx } from "../../../components/mdx"
 
 type Params = {
@@ -25,7 +26,7 @@ export default async function Blog({ params }: Props) {
   }
 
   return (
-    <main className="p-5 mx-auto max-w-[650px]">
+    <MainAnimation className="max-w-[650px]">
       <section>
         <Image
           src={blog.image ?? ""}
@@ -48,6 +49,6 @@ export default async function Blog({ params }: Props) {
         </div>
         <Mdx code={blog.body.code} />
       </section>
-    </main>
+    </MainAnimation>
   )
 }
