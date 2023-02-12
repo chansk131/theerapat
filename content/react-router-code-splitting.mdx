@@ -1,0 +1,134 @@
+---
+title: Code-Splitting in React Router v6.4
+date: 2023-02-11
+image: /images/react-router-code-splitting/og.png
+---
+
+Before React Router v6.4 introduced, we used to setup our routes using `<BrowserRouter />` like this.
+
+```javascript
+// main.jsx
+
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+
+// code splitting using React.lazy
+const Dashboard = React.lazy(() => import("./dashboard"))
+
+function App() {
+  return (
+    <React.Suspense fallback="loading...">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
+      </BrowserRouter>
+    </React.Suspense>
+  )
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+)
+```
+
+We do code splitting to avoid loading the JavaScript code of the entire app. However, by using this setup, Content Layout Shift (CLS) occurs when user changes route because of the `React.lazy` ("loading..." will show for a brief second, causing the page to flicker). With the introduction of Data APIs in React Router v6.4, we can avoid this flicker. But first, let's migrate to the new Data API router.
+
+## Use the new Data API router
+
+Since the React Router v6.4 Data APIs has been released, we can now setup our routers using `createBrowserRouter` together with `createRoutesFromElements` function as follows
+
+```javascript
+// main.jsx
+
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom"
+
+const Dashboard = React.lazy(() => import("./dashboard"))
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route
+      path="/dashboard"
+      element={
+        <React.Suspense fallback="loading...">
+          <Dashboard />
+        </React.Suspense>
+      }
+    />
+  )
+)
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <RouterProvider router={router} />
+  </React.StrictMode>
+)
+```
+
+Now we can introduce a loader function to import `<Dashboard />` and avoid the CLS issue.
+
+## Use loader to eliminate Content Layout Shift
+
+Since we are using React Router Data APIs, we can provide our `loader` function. We can import `<Dashboard />` inside the loader and await for the import to be finished before rendering the component. By doing so, we can skip the `React.Suspense` behaviour and therefore remove CLS at the same time.
+
+```javascript
+// dashboard-loader.jsx
+
+import React from "react"
+
+let Dashboard = React.lazy(() => import("./dashboard"))
+
+export async function lazyDashboardLoader() {
+  const componentModule = await import("./dashboard")
+  // This avoid flicker from React.lazy by using the component directly
+  Dashboard = componentModule.default
+
+  return null
+}
+
+export function LazyDashboard() {
+  return (
+    <React.Suspense fallback="loading...">
+      <Dashboard />
+    </React.Suspense>
+  )
+}
+```
+
+```javascript
+// main.tsx
+
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom"
+import { LazyDashboard, lazyDashboardLoader } from "./dashboard-loader"
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route
+      path="/dashboard"
+      element={<LazyDashboard />}
+      loader={lazyDashboardLoader}
+    />
+  )
+)
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <RouterProvider router={router} />
+  </React.StrictMode>
+)
+```
+
+Now, our app can be as lightweight as we want and we will not see the flicker caused by `React.Suspense`.
+
+This article is inspired by [React Router 6.4 Code-Splitting by Ruben Cases](https://dev.to/infoxicator/data-routers-code-splitting-23no) and [Matt's code snippet](https://gist.github.com/brophdawg11/03a475e26922e09aa35ca8b5900a4fb4) but adjusted to make it suitable for a project not currently using Data Loader.

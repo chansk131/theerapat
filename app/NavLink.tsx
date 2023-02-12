@@ -11,7 +11,10 @@ type Props = {
 }
 
 const NavLink = ({ href, children }: Props) => {
-  const pathname = usePathname()
+  let pathname = usePathname()
+  if (pathname?.includes("/blog/")) {
+    pathname = "/blog"
+  }
 
   return (
     <Link
