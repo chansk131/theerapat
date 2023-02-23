@@ -26,8 +26,8 @@ export default async function Blog({ params }: Props) {
   }
 
   return (
-    <MainAnimation className="max-w-[650px]">
-      <section>
+    <MainAnimation>
+      <section className="max-w-[65ch] m-auto">
         <Image
           src={blog.image ?? ""}
           alt="cover"
