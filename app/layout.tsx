@@ -2,7 +2,6 @@ import "./globals.css"
 import NavLink from "./NavLink"
 
 import { Inter } from "@next/font/google"
-import MainAnimation from "../components/MainAnimation"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -24,12 +23,14 @@ export default function RootLayout({
       <head />
       <body>
         <nav
-          className="sticky h-18 top-0 border-b border-gray-200 py-2 px-5 flex
-         flex-row justify-end bg-gray-100 bg-opacity-80 backdrop-blur-md font-medium z-10"
+          className="sticky top-0 z-10 border-b
+          border-gray-200 bg-gray-100 bg-opacity-80 backdrop-blur-md"
         >
-          <NavLink href="/">Home</NavLink>
-          <NavLink href="/about">About Me</NavLink>
-          <NavLink href="/blog">Blog</NavLink>
+          <div className="h-18 m-auto flex max-w-6xl flex-row justify-end py-2 px-5 font-medium">
+            <NavLink href="/">Home</NavLink>
+            <NavLink href="/about">About Me</NavLink>
+            <NavLink href="/blog">Blog</NavLink>
+          </div>
         </nav>
         {children}
       </body>
