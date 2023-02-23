@@ -6,9 +6,10 @@ export default function Home() {
   return (
     <MainAnimation>
       <section className="mb-10">
-        <h1 className="pt-20 pb-10 lg:pt-32 lg:pb-16 text-5xl font-extrabold max-w-[30rem]">
-          Hi! My name is <strong className="text-teal-500">Chan</strong> and I
-          am a software developer.
+        <h1 className="pt-20 pb-10 lg:pt-32 lg:pb-16 text-5xl font-extrabold max-w-[35rem]">
+          Hi! My name is{" "}
+          <strong className="text-teal-500">Chan Theerapat Muangpoon</strong>{" "}
+          and I am a software developer.
         </h1>
         <p className="text-xl max-w-lg mb-4">
           I have experiences in design and development of the websites and
