@@ -1,0 +1,93 @@
+---
+title: How to create a beautiful horizontal scrollable content.
+date: 2023-02-11
+image: /images/horizontal-scroll/horizontal-scroll.gif
+---
+
+Today, let's try to implement the horizontal scrolling component.
+
+<p align="center">
+  <img
+    alt="Final Result"
+    src="/images/horizontal-scroll/horizontal-scroll.gif"
+  />
+</p>
+
+We start from trying to implement it in a naive way. First, we make the red boxes to be `inline-block` to allow them to sit next to each other. Then we apply `white-space: nowrap;` and `overflow-x: auto;` to the wrapper of these boxes to make them horizontally scroll.
+
+```html
+<div class="wrapper">
+  <h1>Header</h1>
+
+  <div class="row">
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+  </div>
+</div>
+```
+
+```css
+.row {
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.box {
+  display: inline-block;
+}
+
+/* These are for cosmetics  */
+.wrapper {
+  border: 1px solid black;
+  width: 350px;
+  padding: 32px;
+}
+
+.box {
+  width: 100px;
+  height: 80px;
+  background-color: red;
+  margin-right: 8px;
+}
+```
+
+And here is the result of the naive approach.
+
+<p align="center">
+  <img
+    alt="Naive Result"
+    src="/images/horizontal-scroll/horizontal-scroll-naive.gif"
+  />
+</p>
+
+The content (red boxes) does not go to the left border of the wrapper when we scroll. The same goes for the right border too. This is because the padding of the wrapper forces these boxes to live inside their confined space. Another not-so-nice thing about this is that the horizontal scroll bar is too close to the boxes, making it look ugly.
+
+## Fix padding problems
+
+In the past, to fix these problems, I would have removed the padding of the wrapper and apply padding to `<h1/>` and `.row` one by one. However, I just learned another way of fixing these problems by only applying styles to the relevant element, which is `.row` class. Much easier, right?
+
+The technique here is to use a <b>negative margin</b> to remove the effect of padding from the wrapper. I learned this technique from Josh Comeau's [CSS for JavaScript developer course](https://css-for-js.dev/).
+
+```css
+.row {
+  white-space: nowrap;
+  overflow-x: auto;
+
+  /* remove wrapper's padding effect */
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-bottom: 32px;
+  margin-left : -32px;
+  margin-right: -32px;
+  margin-bottom: -32px;
+}
+
+...
+```
+
+Here's a [codepen link](https://codepen.io/chansk131/pen/abaZywr) to play around with the final result.
+
+To sum up, this negative margin technique can be applied to remove the padding effect of the wrapper. In other words, use it on the element that want to ignore the padding of the wrapper. This can also be the case of the image element that wants to go full width while other elements still want to respect that margin.

@@ -27,25 +27,18 @@ export default async function Blog({ params }: Props) {
 
   return (
     <MainAnimation>
-      <section className="max-w-[65ch] m-auto">
-        <Image
-          src={blog.image ?? ""}
-          alt="cover"
-          width={650}
-          height={130}
-          className="mb-4 object-cover"
-        />
-        <h1 className="font-bold text-3xl">
+      <section className="m-auto max-w-[65ch]">
+        <h1 className="text-3xl font-bold">
           <p>{blog.title}</p>
         </h1>
-        <div className="flex-row flex gap-x-2 mt-4 mb-8 text-sm">
-          <div className="bg-neutral-100 rounded-md px-2 py-1 tracking-tighter">
+        <div className="mt-4 mb-8 flex flex-row gap-x-2 text-sm">
+          <div className="rounded-md bg-neutral-100 px-2 py-1 tracking-tighter">
             {new Intl.DateTimeFormat("en-GB").format(new Date(blog.date))}
           </div>
-          <div className="bg-neutral-100 rounded-md px-2 py-1 tracking-tighter w-fit">
+          <div className="w-fit rounded-md bg-neutral-100 px-2 py-1 tracking-tighter">
             {blog.readingTime.text}
           </div>
-          <div className="h-[0.2em] bg-neutral-50 mx-2" />
+          <div className="mx-2 h-[0.2em] bg-neutral-50" />
         </div>
         <Mdx code={blog.body.code} />
       </section>
