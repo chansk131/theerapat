@@ -2,12 +2,54 @@ import "./globals.css"
 import NavLink from "./NavLink"
 
 import { Inter } from "@next/font/google"
+import type { Metadata } from "next"
 
 const inter = Inter({
   subsets: ["latin"],
   // default, can also use "swap" to ensure custom font always shows
   display: "optional",
 })
+
+export const metadata: Metadata = {
+  title: {
+    default: "Chan Theerapat Muangpoon",
+    template: "%s | Chan Theerapat Muangpoon",
+  },
+  description: "Developer.",
+  openGraph: {
+    title: "Chan Theerapat Muangpoon",
+    description: "Developer.",
+    url: "https://theerapat.me",
+    siteName: "Chan Theerapat Muangpoon",
+    images: [
+      {
+        url: "https://theerapat.me/og.jpg",
+        width: 1920,
+        height: 1080,
+      },
+    ],
+    locale: "en-US",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  twitter: {
+    title: "Chan Theerapat Muangpoon",
+    card: "summary_large_image",
+  },
+  icons: {
+    shortcut: "/favicon.ico",
+  },
+}
 
 export default function RootLayout({
   children,

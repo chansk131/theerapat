@@ -1,4 +1,5 @@
 import { allBlogs } from "contentlayer/generated"
+import type { Metadata } from "next"
 import Image from "next/image"
 import { notFound } from "next/navigation"
 import MainAnimation from "../../../components/MainAnimation"
@@ -16,6 +17,40 @@ export async function generateStaticParams(): Promise<Params[]> {
 
 type Props = {
   params: Params
+}
+
+export async function generateMetadata({
+  params,
+}: Props): Promise<Metadata | undefined> {
+  const post = allBlogs.find((post) => post.slug === params.slug)
+  if (!post) {
+    return
+  }
+
+  const { title, date, image, slug } = post
+  const ogImage = image
+    ? `https://theerapat.me${image}`
+    : `https://theerapat.me/api/og?title=${title}`
+
+  return {
+    title,
+    openGraph: {
+      title,
+      type: "article",
+      publishedTime: date,
+      url: `https://theerapat.me/blog/${slug}`,
+      images: [
+        {
+          url: ogImage,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      images: [ogImage],
+    },
+  }
 }
 
 export default async function Blog({ params }: Props) {

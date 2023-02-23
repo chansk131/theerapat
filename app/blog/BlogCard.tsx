@@ -16,17 +16,17 @@ const BlogCard = ({ blog }: Props) => {
         href={`/blog/${blog.slug}`}
       >
         <Image
-          className="rounded-t-md"
+          className="h-[168.5px] rounded-t-md object-cover"
           src={blog.image ?? ""}
           alt="cover"
           width={300}
-          height={200}
+          height={168.5}
         />
-        <p className="text-gray-500 px-4">
+        <p className="px-4 text-gray-500">
           {new Intl.DateTimeFormat("en-GB").format(new Date(blog.date))} -{" "}
           {blog.readingTime.text}
         </p>
-        <h2 className="font-bold text-2xl px-4 hover:underline">
+        <h2 className="overflow-hidden text-ellipsis px-4 text-2xl font-bold line-clamp-2 hover:underline">
           {blog.title}
         </h2>
       </Link>

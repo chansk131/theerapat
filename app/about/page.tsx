@@ -1,4 +1,10 @@
+import type { Metadata } from "next"
 import MainAnimation from "../../components/MainAnimation"
+
+export const metadata: Metadata = {
+  title: "About",
+  description: "Senior Developer Consultant at Thoughtworks.",
+}
 
 type TimelineItemProps = {
   time: string
@@ -9,7 +15,7 @@ type TimelineItemProps = {
 const TimelineItem = ({ time, position, highlights }: TimelineItemProps) => {
   return (
     <li className="ml-4 mb-10 last:mb-0">
-      <div className="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white"></div>
+      <div className="absolute -left-1.5 mt-1.5 h-3 w-3 rounded-full border border-white bg-gray-200"></div>
       <time className="mb-1 text-sm font-normal leading-none text-gray-400">
         {time}
       </time>
@@ -26,7 +32,7 @@ export default function About() {
   return (
     <MainAnimation>
       <section>
-        <h1 className="text-5xl font-bold py-10">Work Experiences</h1>
+        <h1 className="py-10 text-5xl font-bold">Work Experiences</h1>
         <ol className="relative border-l border-gray-200">
           <TimelineItem
             time="July 2021 - current"
@@ -45,18 +51,18 @@ export default function About() {
           />
         </ol>
       </section>
-      <div className="border-gray-200 border-b-2 w-full h-1 py-5" />
+      <div className="h-1 w-full border-b-2 border-gray-200 py-5" />
       <section>
-        <h1 className="text-5xl font-bold py-10">Education</h1>
+        <h1 className="py-10 text-5xl font-bold">Education</h1>
         <ul>
           <li className="text-gray-900">
             MSc Computing Science, Imperial College London, UK 2018-2019
           </li>
         </ul>
       </section>
-      <div className="border-gray-200 border-b-2 w-full h-1 py-5" />
+      <div className="h-1 w-full border-b-2 border-gray-200 py-5" />
       <section>
-        <h1 className="text-5xl font-bold py-10">Publication</h1>
+        <h1 className="py-10 text-5xl font-bold">Publication</h1>
         <ul>
           <li className="text-gray-900">
             Augmented Reality System for Digital Rectal Examination Training and
