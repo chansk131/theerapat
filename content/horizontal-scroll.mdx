@@ -6,12 +6,12 @@ image: /images/horizontal-scroll/horizontal-scroll.gif
 
 Today, let's try to implement the horizontal scrolling component.
 
-<p align="center">
+<div align="center">
   <img
     alt="Final Result"
     src="/images/horizontal-scroll/horizontal-scroll.gif"
   />
-</p>
+</div>
 
 We start from trying to implement it in a naive way. First, we make the red boxes to be `inline-block` to allow them to sit next to each other. Then we apply `white-space: nowrap;` and `overflow-x: auto;` to the wrapper of these boxes to make them horizontally scroll.
 
@@ -56,18 +56,28 @@ We start from trying to implement it in a naive way. First, we make the red boxe
 
 And here is the result of the naive approach.
 
-<p align="center">
+<div align="center">
   <img
     alt="Naive Result"
     src="/images/horizontal-scroll/horizontal-scroll-naive.gif"
   />
-</p>
+</div>
 
 The content (red boxes) does not go to the left border of the wrapper when we scroll. The same goes for the right border too. This is because the padding of the wrapper forces these boxes to live inside their confined space. Another not-so-nice thing about this is that the horizontal scroll bar is too close to the boxes, making it look ugly.
 
 ## Fix padding problems
 
-In the past, to fix these problems, I would have removed the padding of the wrapper and apply padding to `<h1/>` and `.row` one by one. However, I just learned another way of fixing these problems by only applying styles to the relevant element, which is `.row` class. Much easier, right?
+In the past, to fix these problems, I would have removed the padding of the wrapper and apply padding to `<h1/>` and `.row` one by one.
+
+<div align="center">
+  <img
+    alt="Add padding to each child component"
+    src="/images/horizontal-scroll/horizontal-scroll-child-padding.png"
+  />
+  <quote>The green area shows padding of children</quote>
+</div>
+
+However, I just learned another way of fixing these problems by only applying styles to the relevant element, which is `.row` class. Much easier, right?
 
 The technique here is to use a <b>negative margin</b> to remove the effect of padding from the wrapper. I learned this technique from Josh Comeau's [CSS for JavaScript developer course](https://css-for-js.dev/).
 
