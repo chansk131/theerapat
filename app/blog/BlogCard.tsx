@@ -1,6 +1,7 @@
 import { Blog } from "contentlayer/generated"
 import Image from "next/image"
 import Link from "next/link"
+import Balancer from "react-wrap-balancer"
 import BlogCardContainer from "./BlogCardContainer"
 
 type Props = {
@@ -27,7 +28,7 @@ const BlogCard = ({ blog }: Props) => {
           {blog.readingTime.text}
         </p>
         <h2 className="overflow-hidden text-ellipsis px-4 text-2xl font-bold line-clamp-2 hover:underline">
-          {blog.title}
+          <Balancer>{blog.title}</Balancer>
         </h2>
       </Link>
     </BlogCardContainer>

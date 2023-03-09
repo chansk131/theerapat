@@ -23,6 +23,7 @@ specifiers:
   prettier-plugin-tailwindcss: ^0.2.3
   react: 18.2.0
   react-dom: 18.2.0
+  react-wrap-balancer: ^0.4.0
   reading-time: ^1.5.0
   rehype-autolink-headings: ^6.1.1
   rehype-pretty-code: ^0.9.4
@@ -49,6 +50,7 @@ dependencies:
   next-contentlayer: 0.3.0_f4d7icgk4i3oippbo5yzyh5rhq
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-wrap-balancer: 0.4.0_react@18.2.0
   reading-time: 1.5.0
   rehype-autolink-headings: 6.1.1
   rehype-pretty-code: 0.9.4_shiki@0.14.1
@@ -4120,6 +4122,14 @@ packages:
 
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
+    dev: false
+
+  /react-wrap-balancer/0.4.0_react@18.2.0:
+    resolution: {integrity: sha512-MUsROihHd7bFHCo9kCOifKDYBEZPgKTyGvfa8RcwRQKtT2cL7Um9Cc8A7GvuT8t3np7LAGsEkzdEyJdKrr5lVQ==}
+    peerDependencies:
+      react: ^18.0.0
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react/18.2.0:
