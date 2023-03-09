@@ -12,7 +12,7 @@ specifiers:
   contentlayer: ^0.3.0
   eslint: 8.34.0
   eslint-config-next: 13.2.0
-  framer-motion: ^9.1.6
+  framer-motion: ^10.2.3
   globby: ^13.1.3
   next: 13.2.0
   next-contentlayer: ^0.3.0
@@ -41,7 +41,7 @@ dependencies:
   contentlayer: 0.3.0
   eslint: 8.34.0
   eslint-config-next: 13.2.0_7kw3g6rralp5ps6mg3uyzz6azm
-  framer-motion: 9.1.6_biqbaboplfbrettd7655fr4n2y
+  framer-motion: 10.2.3_biqbaboplfbrettd7655fr4n2y
   next: 13.2.0_biqbaboplfbrettd7655fr4n2y
   next-contentlayer: 0.3.0_f4d7icgk4i3oippbo5yzyh5rhq
   react: 18.2.0
@@ -2225,11 +2225,16 @@ packages:
     resolution: {integrity: sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==}
     dev: true
 
-  /framer-motion/9.1.6_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-3y4p8xGspkEe7eWPdKncg4IvYeUwvHeky9em6dqKu6gnrmo2iBdrChX0s+emhbv00/VuBhdf33rw38J/cxaBrA==}
+  /framer-motion/10.2.3_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-+TBxfia8Ym/lYSvTAhome7LYFIR8fKhImuln5zcp9D8nFI2wNSDdBRtK5WoWTyjHXJ7efv5xv376Ma85zHhtUg==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
